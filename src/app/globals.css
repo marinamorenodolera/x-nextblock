@@ -14,13 +14,13 @@
   --brand-danger: #ef4444; /* Error red */
   
   /* DARK THEME BACKGROUNDS */
-  --bg-primary: #0a0a0a; /* Deep black */
-  --bg-secondary: #1a1a1a; /* Card background */
-  --bg-tertiary: #2a2a2a; /* Elevated elements */
+  --bg-primary: #2c0a0b; /* Dark brown base */
+  --bg-secondary: #3c1a1b; /* Slightly lighter brown for cards */
+  --bg-tertiary: #4c2a2b; /* Elevated elements brown */
   
   /* BORDERS AND SEPARATORS */
-  --border-primary: #333333;
-  --border-secondary: #404040;
+  --border-primary: #5c3a3b; /* Brown-tinted border for primary */
+  --border-secondary: #6c4a4b; /* Lighter brown-tinted border */
   
   /* TYPOGRAPHY */
   --font-primary: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -85,6 +85,8 @@
   --bg-primary: #0d1117;
   --bg-secondary: #161b22;
   --bg-tertiary: #21262d;
+  --border-primary: #30363d;
+  --border-secondary: #40464d;
 }
 
 @theme inline {
@@ -117,4 +119,59 @@ html {
 :focus-visible {
   outline: 2px solid var(--brand-primary-500);
   outline-offset: 2px;
+}
+
+/* CHECKBOX ACCENT BLUE ENFORCEMENT - MAXIMUM FORCE */
+[data-slot="checkbox"][data-state="checked"],
+[data-state="checked"][data-slot="checkbox"],
+button[data-state="checked"][data-slot="checkbox"],
+[role="checkbox"][data-state="checked"],
+button[role="checkbox"][data-state="checked"][data-slot="checkbox"] {
+  background-color: #73A2FF !important;
+  background: #73A2FF !important;
+  border-color: #73A2FF !important;
+  border: 2px solid #73A2FF !important;
+  color: white !important;
+  /* Override any dark mode or other background */
+  --tw-bg-opacity: 1 !important;
+}
+
+/* Remove any pseudo-elements or overlays that might hide the background */
+[data-slot="checkbox"][data-state="checked"]::before,
+[data-slot="checkbox"][data-state="checked"]::after,
+[role="checkbox"][data-state="checked"]::before,
+[role="checkbox"][data-state="checked"]::after {
+  display: none !important;
+}
+
+/* Checkbox icon color enforcement */
+[data-slot="checkbox"][data-state="checked"] svg,
+[role="checkbox"][data-state="checked"] svg,
+[data-slot="checkbox"][data-state="checked"] svg path,
+[role="checkbox"][data-state="checked"] svg path {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+/* Additional specificity for the indicator */
+[data-slot="checkbox-indicator"] svg,
+[data-slot="checkbox-indicator"] svg path {
+  color: white !important;
+  fill: white !important; 
+  stroke: white !important;
+}
+
+/* NUCLEAR OPTION - Force all checkboxes with these exact classes */
+.peer.border-input.dark\\:bg-input\\/30[data-state="checked"] {
+  background-color: #73A2FF !important;
+  background: #73A2FF !important;
+  border-color: #73A2FF !important;
+}
+
+/* Target the exact element structure from your HTML */
+button[role="checkbox"][aria-checked="true"][data-state="checked"][data-slot="checkbox"] {
+  background-color: #73A2FF !important;
+  background: #73A2FF !important;
+  border: 2px solid #73A2FF !important;
 }

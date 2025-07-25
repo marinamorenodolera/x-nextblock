@@ -76,7 +76,7 @@ export function TweetCard({ tweet, isSelected = false, onSelect, showSelection =
       className={cn(
         "transition-all duration-200 hover:shadow-lg hover:shadow-brand-primary-500/5 hover:border-brand-primary-500/30 border-border-primary",
         "hover:translate-y-[-1px] active:translate-y-0",
-        isSelected && "ring-2 ring-brand-primary-500 border-brand-primary-500/50 shadow-lg",
+        isSelected && "ring-2 ring-brand-primary-500 border-brand-primary-500 shadow-lg shadow-brand-primary-500/20",
         "min-h-touch cursor-pointer",
         isExpanded && "shadow-lg ring-1 ring-brand-primary-500/20 border-brand-primary-500/30"
       )}
@@ -92,6 +92,11 @@ export function TweetCard({ tweet, isSelected = false, onSelect, showSelection =
                 checked={isSelected}
                 onCheckedChange={handleSelectionChange}
                 className="mt-1 h-5 w-5"
+                style={isSelected ? {
+                  backgroundColor: '#73A2FF',
+                  borderColor: '#73A2FF',
+                  color: 'white'
+                } : undefined}
               />
             )}
 
@@ -152,7 +157,10 @@ export function TweetCard({ tweet, isSelected = false, onSelect, showSelection =
 
         {/* Tweet Content */}
         <div className="pl-8 md:pl-13">
-          <p className="text-sm text-foreground leading-relaxed whitespace-pre-wrap">
+          <p className={cn(
+            "text-sm leading-relaxed whitespace-pre-wrap transition-colors duration-200",
+            isSelected ? "text-brand-primary-500 font-medium" : "text-foreground"
+          )}>
             {tweet.content}
           </p>
           
