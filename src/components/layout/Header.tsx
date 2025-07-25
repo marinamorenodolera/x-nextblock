@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { BarChart3, Settings, Zap } from 'lucide-react'
+import { BarChart3, Settings, Zap, UserPlus } from 'lucide-react'
 import { DashboardStats } from '@/lib/types'
 import Link from 'next/link'
 
@@ -12,6 +12,10 @@ interface HeaderProps {
 }
 
 export function Header({ stats, selectedCount = 0 }: HeaderProps) {
+  const handleFollowAccounts = () => {
+    // Navigate to accounts management page
+    window.location.href = '/accounts'
+  }
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border-primary bg-bg-secondary/95 backdrop-blur supports-[backdrop-filter]:bg-bg-secondary/60">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
@@ -58,6 +62,17 @@ export function Header({ stats, selectedCount = 0 }: HeaderProps) {
               {selectedCount} Selected
             </Badge>
           )}
+
+          {/* Follow Accounts */}
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="h-btn-md w-btn-md hover:bg-brand-primary-500/10 hover:text-brand-primary-500"
+            onClick={handleFollowAccounts}
+          >
+            <UserPlus className="h-4 w-4" />
+            <span className="sr-only">Follow Accounts</span>
+          </Button>
 
           {/* Analytics */}
           <Link href="/analytics">
