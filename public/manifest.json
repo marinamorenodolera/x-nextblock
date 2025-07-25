@@ -1,0 +1,108 @@
+{
+  "name": "CryptoInsight - NextBlock VC Platform",
+  "short_name": "CryptoInsight",
+  "description": "AI-powered crypto content curation and publishing platform for NextBlock VC",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#73A2FF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "categories": [
+    "business",
+    "finance",
+    "productivity",
+    "social"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Content Feed",
+      "short_name": "Feed",
+      "description": "View curated crypto content",
+      "url": "/dashboard",
+      "icons": [
+        {
+          "src": "/icons/shortcut-feed.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "AI Options",
+      "short_name": "AI",
+      "description": "Generate AI post options",
+      "url": "/ai-options",
+      "icons": [
+        {
+          "src": "/icons/shortcut-ai.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Published Posts",
+      "short_name": "Posts",
+      "description": "View published content",
+      "url": "/published",
+      "icons": [
+        {
+          "src": "/icons/shortcut-posts.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "lang": "en-US",
+  "dir": "ltr"
+}
