@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { BarChart3, Settings, Zap, UserPlus } from 'lucide-react'
+import { BarChart3, Settings, Zap, UserPlus, FileText } from 'lucide-react'
 import { DashboardStats } from '@/lib/types'
 import Link from 'next/link'
 
@@ -73,6 +73,14 @@ export function Header({ stats, selectedCount = 0 }: HeaderProps) {
             <UserPlus className="h-4 w-4" />
             <span className="sr-only">Follow Accounts</span>
           </Button>
+
+          {/* Report */}
+          <Link href="/report">
+            <Button variant="ghost" size="icon" className="h-btn-md w-btn-md">
+              <FileText className="h-4 w-4" />
+              <span className="sr-only">Daily Report</span>
+            </Button>
+          </Link>
 
           {/* Analytics */}
           <Link href="/analytics">
