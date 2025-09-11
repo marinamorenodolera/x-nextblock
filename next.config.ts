@@ -1,20 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // GitHub Pages static export
-  output: 'export',
-  trailingSlash: true,
-  basePath: '/x-nextblock',
-  assetPrefix: '/x-nextblock/',
-  
   // PWA and Performance optimizations
   experimental: {
     ppr: false // Partial Prerendering disabled for PWA compatibility
   },
   
-  // Image optimization - disabled for static export
+  // Image optimization
   images: {
-    unoptimized: true
+    domains: ['pbs.twimg.com', 'abs.twimg.com'], // Twitter images
+    formats: ['image/webp', 'image/avif']
   },
   
   // Service Worker support
