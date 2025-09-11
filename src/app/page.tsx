@@ -1,10 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Calendar, FileText, TrendingUp, Zap, ArrowRight, Clock, Users, Target } from 'lucide-react'
 import Link from 'next/link'
 
 export default function HomePage() {
@@ -32,208 +28,152 @@ export default function HomePage() {
   ]
 
   const stats = [
-    {
-      icon: TrendingUp,
-      label: 'Viral Score Promedio',
-      value: '87%',
-      change: '+5%',
-      description: 'Últimos 7 días'
-    },
-    {
-      icon: Target,
-      label: 'Oportunidades Detectadas',
-      value: '24',
-      change: '+8',
-      description: 'Esta semana'
-    },
-    {
-      icon: Users,
-      label: 'Alcance Total',
-      value: '15.2M',
-      change: '+12%',
-      description: 'Impresiones estimadas'
-    },
-    {
-      icon: Zap,
-      label: 'Tweets Publicados',
-      value: '18',
-      change: '+6',
-      description: 'Últimos 7 días'
-    }
+    { label: 'Viral Score Promedio', value: '87%', change: '+5%', description: 'Últimos 7 días' },
+    { label: 'Oportunidades Detectadas', value: '24', change: '+8', description: 'Esta semana' },
+    { label: 'Alcance Total', value: '15.2M', change: '+12%', description: 'Impresiones estimadas' },
+    { label: 'Tweets Publicados', value: '18', change: '+6', description: 'Últimos 7 días' }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0506] to-[#2c0a0b]">
-      {/* Header */}
-      <header className="border-b border-red-900/20 bg-[#2c0a0b]/50 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-4">
+    <div className="min-h-screen bg-[#2c0a0b] text-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-[#2c0a0b]">
+        <div className="max-w-[1600px] mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600">
-                <FileText className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-white tracking-tight">NextBlock Intelligence</h1>
-                <p className="text-sm text-red-300">Daily Twitter Reports</p>
-              </div>
+            <Link href="/" className="text-2xl font-medium tracking-tight">
+              NEXTBLOCK INTELLIGENCE
+            </Link>
+            <div className="hidden md:flex items-center gap-12">
+              <Link href="/report" className="text-sm uppercase tracking-wider hover:opacity-70 transition-opacity">
+                REPORT
+              </Link>
+              <Link href="/archive" className="text-sm uppercase tracking-wider hover:opacity-70 transition-opacity">
+                ARCHIVE
+              </Link>
             </div>
           </div>
         </div>
-      </header>
+      </nav>
 
-      <div className="container mx-auto px-6 py-12 max-w-6xl">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            Twitter Intelligence
-          </h1>
-          <p className="text-xl md:text-2xl text-red-200 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Reportes diarios optimizados para maximizar el impacto viral del CEO de NextBlock VC
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/report">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg">
-                Ver Reporte de Hoy
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/archive">
-              <Button variant="outline" size="lg" className="border-red-600 text-red-400 hover:bg-red-900/20 px-8 py-4 text-lg">
-                Explorar Archivo
-                <Calendar className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon
-            return (
-              <Card key={index} className="bg-[#2c0a0b]/50 border-red-900/30 p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600/20">
-                    <Icon className="h-5 w-5 text-red-400" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-gray-400">{stat.label}</p>
-                  </div>
-                </div>
-                <div className="flex items-end justify-between">
-                  <div>
-                    <p className="text-3xl font-bold text-white mb-1">{stat.value}</p>
-                    <p className="text-xs text-gray-500">{stat.description}</p>
-                  </div>
-                  <Badge className="bg-green-600/20 text-green-400 border-green-600/30">
-                    {stat.change}
-                  </Badge>
-                </div>
-              </Card>
-            )
-          })}
-        </div>
-
-        {/* Recent Reports */}
-        <div className="mb-16">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold text-white">Reportes Recientes</h2>
-            <div className="flex items-center gap-2">
-              <Calendar className="h-5 w-5 text-red-400" />
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="bg-[#2c0a0b]/50 border border-red-900/30 text-white px-3 py-2 rounded-lg text-sm"
-              />
+      {/* Main Content */}
+      <main className="pt-24 pb-16">
+        <div className="max-w-[1600px] mx-auto px-8">
+          {/* Hero */}
+          <section className="py-24">
+            <div className="max-w-4xl">
+              <h1 className="text-[clamp(3.5rem,8vw,12rem)] font-medium leading-none tracking-tight mb-8">
+                TWITTER<br />
+                INTELLIGENCE
+              </h1>
+              <p className="text-xl leading-relaxed mb-12 max-w-2xl opacity-80">
+                Daily reports optimized to maximize viral impact for NextBlock VC's CEO content strategy.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6">
+                <Link 
+                  href="/report"
+                  className="inline-block bg-white text-[#2c0a0b] px-8 py-4 text-sm uppercase tracking-wider font-medium hover:opacity-90 transition-opacity"
+                >
+                  TODAY'S REPORT
+                </Link>
+                <Link 
+                  href="/archive"
+                  className="inline-block border border-white px-8 py-4 text-sm uppercase tracking-wider font-medium hover:bg-white hover:text-[#2c0a0b] transition-all"
+                >
+                  VIEW ARCHIVE
+                </Link>
+              </div>
             </div>
-          </div>
-          
-          <div className="grid gap-4">
-            {recentReports.map((report, index) => (
-              <Card key={index} className="bg-[#2c0a0b]/50 border-red-900/30 p-6 hover:bg-[#2c0a0b]/70 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-lg font-semibold text-white">{report.title}</h3>
-                      <Badge 
-                        variant={report.status === 'active' ? 'default' : 'secondary'}
-                        className={report.status === 'active' ? 'bg-red-600' : 'bg-gray-600'}
-                      >
-                        {report.status === 'active' ? 'Activo' : 'Archivo'}
-                      </Badge>
-                    </div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <Clock className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm text-gray-400">{report.date}</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {report.highlights.map((highlight, hIndex) => (
-                        <Badge key={hIndex} variant="outline" className="text-xs border-red-800/40 text-red-300">
-                          {highlight}
-                        </Badge>
-                      ))}
-                    </div>
+          </section>
+
+          {/* Stats */}
+          <section className="py-16 border-t border-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+              {stats.map((stat, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="text-sm uppercase tracking-wider opacity-60">
+                    {stat.label}
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Link href={`/report?date=${report.date}`}>
-                      <Button variant="ghost" size="sm" className="text-red-400 hover:bg-red-900/20">
-                        Ver Reporte
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
+                  <div className="text-4xl font-medium">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm opacity-60">
+                    {stat.change} • {stat.description}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Recent Reports */}
+          <section className="py-16 border-t border-white/10">
+            <div className="flex items-center justify-between mb-12">
+              <h2 className="text-3xl font-medium">RECENT REPORTS</h2>
+              <div className="flex items-center gap-4">
+                <label className="text-sm uppercase tracking-wider opacity-60">
+                  DATE
+                </label>
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="bg-transparent border border-white/20 px-4 py-2 text-sm"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              {recentReports.map((report, index) => (
+                <div key={index} className="border-t border-white/10 pt-8 first:border-t-0 first:pt-0">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-2">
+                        <h3 className="text-xl font-medium">{report.title}</h3>
+                        <span className={`text-xs uppercase tracking-wider px-2 py-1 ${
+                          report.status === 'active' 
+                            ? 'bg-white text-[#2c0a0b]' 
+                            : 'border border-white/20 opacity-60'
+                        }`}>
+                          {report.status === 'active' ? 'ACTIVE' : 'ARCHIVED'}
+                        </span>
+                      </div>
+                      <div className="text-sm opacity-60 mb-4">
+                        {report.date}
+                      </div>
+                      <div className="flex flex-wrap gap-3">
+                        {report.highlights.map((highlight, hIndex) => (
+                          <span key={hIndex} className="text-xs border border-white/20 px-3 py-1 opacity-80">
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <Link 
+                      href={`/report?date=${report.date}`}
+                      className="text-sm uppercase tracking-wider hover:opacity-70 transition-opacity ml-8"
+                    >
+                      VIEW →
                     </Link>
                   </div>
                 </div>
-              </Card>
-            ))}
+              ))}
+            </div>
+          </section>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 py-12">
+        <div className="max-w-[1600px] mx-auto px-8">
+          <div className="flex items-center justify-between">
+            <div className="text-sm opacity-60">
+              © 2025 NEXTBLOCK VENTURES
+            </div>
+            <div className="text-sm opacity-60">
+              TWITTER INTELLIGENCE PLATFORM
+            </div>
           </div>
         </div>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card className="bg-gradient-to-br from-red-900/30 to-red-800/20 border-red-800/40 p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Zap className="h-8 w-8 text-red-400" />
-              <h3 className="text-xl font-bold text-white">Acceso Rápido</h3>
-            </div>
-            <p className="text-red-200 mb-6">
-              Accede directamente al reporte de inteligencia de Twitter más reciente, optimizado para decisiones inmediatas.
-            </p>
-            <Link href="/report">
-              <Button className="bg-red-600 hover:bg-red-700 w-full">
-                Reporte de Hoy
-                <FileText className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 border-yellow-800/40 p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Calendar className="h-8 w-8 text-yellow-400" />
-              <h3 className="text-xl font-bold text-white">Archivo Histórico</h3>
-            </div>
-            <p className="text-yellow-200 mb-6">
-              Explora reportes anteriores para análisis de tendencias y patrones de engagement a lo largo del tiempo.
-            </p>
-            <Link href="/archive">
-              <Button variant="outline" className="border-yellow-600 text-yellow-400 hover:bg-yellow-900/20 w-full">
-                Explorar Archivo
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </Card>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-16 pt-8 border-t border-red-900/20">
-          <p className="text-sm text-gray-500">
-            NextBlock Ventures • Plataforma de Inteligencia Twitter
-          </p>
-          <p className="text-xs text-gray-600 mt-1">
-            Optimizado para maximizar el impacto viral del contenido ejecutivo
-          </p>
-        </div>
-      </div>
+      </footer>
     </div>
   )
 }

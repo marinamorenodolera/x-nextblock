@@ -1,30 +1,26 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { Button } from '@/components/ui/button'
-import { ArrowUp, Calendar, TrendingUp, Users, Zap, Clock } from 'lucide-react'
+import Link from 'next/link'
 
 export default function ReportPage() {
   const [selectedSection, setSelectedSection] = useState('executive')
   
-  const reportDate = new Date().toLocaleDateString('es-ES', { 
+  const reportDate = new Date().toLocaleDateString('en-US', { 
     weekday: 'long', 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric' 
-  })
+  }).toUpperCase()
 
   const sections = [
-    { id: 'executive', label: 'Resumen Ejecutivo', icon: TrendingUp },
-    { id: 'tweets', label: 'Tweets Listos', icon: Zap },
-    { id: 'market', label: 'Pulso del Mercado', icon: Users },
-    { id: 'timing', label: 'Estrategia de Tiempos', icon: Clock },
-    { id: 'competitive', label: 'Inteligencia Competitiva', icon: ArrowUp },
-    { id: 'viral', label: 'Tendencias Virales', icon: TrendingUp },
-    { id: 'founders', label: 'Atracción a Fundadores', icon: Users }
+    { id: 'executive', label: 'EXECUTIVE SUMMARY' },
+    { id: 'tweets', label: 'READY TWEETS' },
+    { id: 'market', label: 'MARKET PULSE' },
+    { id: 'timing', label: 'TIMING STRATEGY' },
+    { id: 'competitive', label: 'COMPETITIVE INTEL' },
+    { id: 'viral', label: 'VIRAL TRENDS' },
+    { id: 'founders', label: 'FOUNDER ATTRACTION' }
   ]
 
   const viralContent = [
@@ -33,7 +29,7 @@ export default function ReportPage() {
       content: "Jesse Pollak's tweet triggered ETH surge (+2.3%) within 24h",
       metrics: "15.4M ETH volume, +18% active addresses",
       viralScore: 95,
-      urgency: "high",
+      urgency: "HIGH",
       type: "Market Impact"
     },
     {
@@ -41,7 +37,7 @@ export default function ReportPage() {
       content: "Meme coin Little Pepe (LILPEPE) raised $24M, major exchange listings confirmed",
       metrics: "Competing with DOGE & SHIB in 2025",
       viralScore: 88,
-      urgency: "medium",
+      urgency: "MEDIUM",
       type: "Emerging Opportunity"
     },
     {
@@ -49,16 +45,8 @@ export default function ReportPage() {
       content: "Nasdaq invests $50M in Gemini for strategic IPO partnership",
       metrics: "Integration with Nasdaq's Calypso platform",
       viralScore: 92,
-      urgency: "high",
+      urgency: "HIGH",
       type: "Breaking News"
-    },
-    {
-      id: 4,
-      content: "200+ crypto influencers exposed for undisclosed paid promotions",
-      metrics: "$50-60K per post, major controversy",
-      viralScore: 85,
-      urgency: "medium",
-      type: "Industry Drama"
     }
   ]
 
@@ -67,146 +55,151 @@ export default function ReportPage() {
       id: 1,
       content: "The Nasdaq-Gemini partnership represents a pivotal moment for institutional crypto adoption. When traditional finance giants make $50M strategic investments, we're witnessing the maturation of digital assets infrastructure. 🏗️",
       score: 95,
-      timing: "Next 6 hours",
+      timing: "NEXT 6 HOURS",
       reasoning: "Breaking news momentum, institutional angle"
     },
     {
       id: 2,
       content: "Transparency in crypto marketing isn't just ethical—it's regulatory survival. The recent influencer disclosure scandal reminds us why NextBlock prioritizes authentic, compliant communication. Trust is the ultimate currency. 💎",
       score: 88,
-      timing: "24-48 hours",
+      timing: "24-48 HOURS",
       reasoning: "Industry commentary, differentiation opportunity"
     },
     {
       id: 3,
       content: "When meme coins raise $24M and compete with established players, we're seeing a new paradigm: community-driven finance meets institutional capital. The lines are blurring, and that's where opportunities emerge. 🚀",
       score: 82,
-      timing: "Next 12 hours",
+      timing: "NEXT 12 HOURS",
       reasoning: "Meme coin momentum, European perspective"
     }
   ]
 
   const renderExecutiveSummary = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-gradient-to-br from-red-900/20 to-red-800/10 border-red-800/30 p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <Zap className="h-5 w-5 text-red-400" />
-            <span className="text-sm font-medium text-red-200">Alta Prioridad</span>
+    <div className="space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="space-y-2">
+          <div className="text-sm uppercase tracking-wider opacity-60">
+            HIGH PRIORITY OPPORTUNITIES
           </div>
-          <div className="text-2xl font-bold text-white">3</div>
-          <div className="text-xs text-red-300">Oportunidades críticas</div>
-        </Card>
+          <div className="text-5xl font-medium">3</div>
+          <div className="text-sm opacity-60">Critical windows identified</div>
+        </div>
         
-        <Card className="bg-gradient-to-br from-yellow-900/20 to-yellow-800/10 border-yellow-800/30 p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="h-5 w-5 text-yellow-400" />
-            <span className="text-sm font-medium text-yellow-200">Momentum</span>
+        <div className="space-y-2">
+          <div className="text-sm uppercase tracking-wider opacity-60">
+            AVERAGE VIRAL SCORE
           </div>
-          <div className="text-2xl font-bold text-white">87%</div>
-          <div className="text-xs text-yellow-300">Score viral promedio</div>
-        </Card>
+          <div className="text-5xl font-medium">87%</div>
+          <div className="text-sm opacity-60">Above baseline threshold</div>
+        </div>
         
-        <Card className="bg-gradient-to-br from-green-900/20 to-green-800/10 border-green-800/30 p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <Users className="h-5 w-5 text-green-400" />
-            <span className="text-sm font-medium text-green-200">Alcance</span>
+        <div className="space-y-2">
+          <div className="text-sm uppercase tracking-wider opacity-60">
+            ESTIMATED REACH
           </div>
-          <div className="text-2xl font-bold text-white">2.4M</div>
-          <div className="text-xs text-green-300">Impresiones estimadas</div>
-        </Card>
+          <div className="text-5xl font-medium">2.4M</div>
+          <div className="text-sm opacity-60">Total impressions potential</div>
+        </div>
       </div>
       
-      <Card className="bg-[#2c0a0b]/50 border-red-900/30 p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Principales Oportunidades Detectadas</h3>
-        <div className="space-y-4">
+      <div className="border-t border-white/10 pt-12">
+        <h3 className="text-2xl font-medium mb-8">KEY OPPORTUNITIES DETECTED</h3>
+        <div className="space-y-8">
           {viralContent.slice(0, 3).map((item) => (
-            <div key={item.id} className="border-l-4 border-red-600 pl-4">
-              <div className="flex items-center gap-2 mb-1">
-                <Badge variant="secondary" className="text-xs">{item.type}</Badge>
-                <Badge 
-                  variant={item.urgency === 'high' ? 'destructive' : 'secondary'}
-                  className="text-xs"
-                >
-                  {item.urgency === 'high' ? 'URGENTE' : 'MEDIO'}
-                </Badge>
+            <div key={item.id} className="border-l-2 border-white pl-6">
+              <div className="flex items-center gap-4 mb-2">
+                <span className="text-xs uppercase tracking-wider px-2 py-1 border border-white/20">
+                  {item.type}
+                </span>
+                <span className={`text-xs uppercase tracking-wider px-2 py-1 ${
+                  item.urgency === 'HIGH' ? 'bg-white text-[#2c0a0b]' : 'border border-white/20'
+                }`}>
+                  {item.urgency}
+                </span>
+                <span className="text-xs uppercase tracking-wider opacity-60">
+                  SCORE: {item.viralScore}%
+                </span>
               </div>
-              <p className="text-white font-medium">{item.content}</p>
-              <p className="text-sm text-gray-400">{item.metrics}</p>
+              <p className="text-xl font-medium mb-2">{item.content}</p>
+              <p className="text-sm opacity-60">{item.metrics}</p>
             </div>
           ))}
         </div>
-      </Card>
+      </div>
     </div>
   )
 
   const renderTweets = () => (
-    <div className="space-y-4">
-      <div className="text-sm text-gray-400 mb-4">
-        Tweets optimizados para el CEO de NextBlock, con puntajes virales y timing estratégico
+    <div className="space-y-8">
+      <div className="text-sm uppercase tracking-wider opacity-60 mb-8">
+        OPTIMIZED TWEETS FOR CEO WITH VIRAL SCORING AND STRATEGIC TIMING
       </div>
       {readyTweets.map((tweet) => (
-        <Card key={tweet.id} className="bg-[#2c0a0b]/50 border-red-900/30 p-6">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Badge className="bg-red-600 text-white">{tweet.score}/100</Badge>
-              <Badge variant="outline" className="text-xs">{tweet.timing}</Badge>
+        <div key={tweet.id} className="border-t border-white/10 pt-8 first:border-t-0 first:pt-0">
+          <div className="flex items-start justify-between mb-6">
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium">
+                {tweet.score}/100 VIRAL SCORE
+              </span>
+              <span className="text-xs uppercase tracking-wider border border-white/20 px-2 py-1">
+                {tweet.timing}
+              </span>
             </div>
-            <Button size="sm" className="bg-red-600 hover:bg-red-700">
-              Copiar Tweet
-            </Button>
+            <button className="text-sm uppercase tracking-wider hover:opacity-70 transition-opacity">
+              COPY TWEET
+            </button>
           </div>
           
-          <p className="text-white mb-4 leading-relaxed">{tweet.content}</p>
+          <p className="text-xl leading-relaxed mb-6">{tweet.content}</p>
           
-          <div className="border-t border-red-900/30 pt-3">
-            <p className="text-xs text-gray-400">
-              <strong>Razón estratégica:</strong> {tweet.reasoning}
+          <div className="border-t border-white/10 pt-4">
+            <p className="text-sm opacity-60">
+              <span className="uppercase tracking-wider">Strategic rationale:</span> {tweet.reasoning}
             </p>
           </div>
-        </Card>
+        </div>
       ))}
     </div>
   )
 
   const renderMarketPulse = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="bg-[#2c0a0b]/50 border-red-900/30 p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Noticias Clave</h3>
-          <div className="space-y-3">
-            <div className="border-l-4 border-blue-600 pl-3">
-              <p className="text-white font-medium">Nasdaq-Gemini Partnership</p>
-              <p className="text-sm text-gray-400">$50M strategic investment, IPO preparation</p>
+    <div className="space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <h3 className="text-2xl font-medium mb-8">KEY NEWS</h3>
+          <div className="space-y-6">
+            <div className="border-l-2 border-white pl-4">
+              <p className="text-lg font-medium mb-2">Nasdaq-Gemini Partnership</p>
+              <p className="text-sm opacity-60">$50M strategic investment, IPO preparation</p>
             </div>
-            <div className="border-l-4 border-yellow-600 pl-3">
-              <p className="text-white font-medium">Meme Coin Surge</p>
-              <p className="text-sm text-gray-400">LILPEPE raises $24M, exchange listings</p>
+            <div className="border-l-2 border-white pl-4">
+              <p className="text-lg font-medium mb-2">Meme Coin Surge</p>
+              <p className="text-sm opacity-60">LILPEPE raises $24M, exchange listings</p>
             </div>
-            <div className="border-l-4 border-red-600 pl-3">
-              <p className="text-white font-medium">Influencer Scandal</p>
-              <p className="text-sm text-gray-400">200+ undisclosed paid promotions exposed</p>
+            <div className="border-l-2 border-white pl-4">
+              <p className="text-lg font-medium mb-2">Influencer Scandal</p>
+              <p className="text-sm opacity-60">200+ undisclosed paid promotions exposed</p>
             </div>
           </div>
-        </Card>
+        </div>
         
-        <Card className="bg-[#2c0a0b]/50 border-red-900/30 p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Top Gainers 24h</h3>
-          <div className="space-y-2">
+        <div>
+          <h3 className="text-2xl font-medium mb-8">TOP GAINERS 24H</h3>
+          <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-white">MYX Finance</span>
-              <Badge className="bg-green-600">+97.58%</Badge>
+              <span>MYX Finance</span>
+              <span className="text-sm">+97.58%</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-white">Story</span>
-              <Badge className="bg-green-600">+30.43%</Badge>
+              <span>Story</span>
+              <span className="text-sm">+30.43%</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-white">Worldcoin</span>
-              <Badge className="bg-green-600">+18.27%</Badge>
+              <span>Worldcoin</span>
+              <span className="text-sm">+18.27%</span>
             </div>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   )
@@ -221,68 +214,91 @@ export default function ReportPage() {
         return renderMarketPulse()
       default:
         return (
-          <Card className="bg-[#2c0a0b]/50 border-red-900/30 p-8 text-center">
-            <p className="text-gray-400">Sección en desarrollo</p>
-          </Card>
+          <div className="text-center py-16">
+            <p className="text-sm opacity-60 uppercase tracking-wider">Section in development</p>
+          </div>
         )
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0506] to-[#2c0a0b]">
-      <div className="container mx-auto p-6 max-w-7xl">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <TrendingUp className="h-8 w-8 text-red-400" />
-            <h1 className="text-3xl font-bold text-white tracking-tight">
-              NextBlock Daily Twitter Intelligence
-            </h1>
-          </div>
-          <div className="flex items-center gap-4 text-sm text-gray-400">
-            <div className="flex items-center gap-1">
-              <Calendar className="h-4 w-4" />
-              <span>{reportDate}</span>
+    <div className="min-h-screen bg-[#2c0a0b] text-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-[#2c0a0b]">
+        <div className="max-w-[1600px] mx-auto px-8 py-6">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="text-2xl font-medium tracking-tight">
+              NEXTBLOCK INTELLIGENCE
+            </Link>
+            <div className="flex items-center gap-12">
+              <Link href="/" className="text-sm uppercase tracking-wider hover:opacity-70 transition-opacity">
+                HOME
+              </Link>
+              <Link href="/archive" className="text-sm uppercase tracking-wider hover:opacity-70 transition-opacity">
+                ARCHIVE
+              </Link>
             </div>
-            <span>•</span>
-            <span>Para: Pieter (CIO)</span>
           </div>
         </div>
+      </nav>
 
-        {/* Navigation */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {sections.map((section) => {
-            const Icon = section.icon
-            return (
-              <Button
-                key={section.id}
-                variant={selectedSection === section.id ? 'default' : 'outline'}
-                onClick={() => setSelectedSection(section.id)}
-                className={`flex items-center gap-2 ${
-                  selectedSection === section.id 
-                    ? 'bg-red-600 hover:bg-red-700 border-red-600' 
-                    : 'border-red-900/30 text-gray-300 hover:bg-red-900/20'
-                }`}
-              >
-                <Icon className="h-4 w-4" />
-                {section.label}
-              </Button>
-            )
-          })}
-        </div>
+      {/* Main Content */}
+      <main className="pt-24 pb-16">
+        <div className="max-w-[1600px] mx-auto px-8">
+          {/* Header */}
+          <section className="py-12 border-b border-white/10">
+            <div className="flex items-start justify-between mb-8">
+              <div>
+                <h1 className="text-[clamp(2.5rem,5vw,4rem)] font-medium leading-none tracking-tight mb-4">
+                  DAILY TWITTER<br />
+                  INTELLIGENCE
+                </h1>
+                <div className="text-sm uppercase tracking-wider opacity-60">
+                  {reportDate} • FOR PIETER (CIO)
+                </div>
+              </div>
+            </div>
+          </section>
 
-        {/* Content */}
-        <div className="mb-8">
-          {renderContent()}
-        </div>
+          {/* Navigation Tabs */}
+          <section className="py-8 border-b border-white/10">
+            <div className="flex flex-wrap gap-8">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => setSelectedSection(section.id)}
+                  className={`text-sm uppercase tracking-wider pb-2 transition-opacity ${
+                    selectedSection === section.id 
+                      ? 'border-b-2 border-white opacity-100' 
+                      : 'opacity-60 hover:opacity-80'
+                  }`}
+                >
+                  {section.label}
+                </button>
+              ))}
+            </div>
+          </section>
 
-        {/* Footer */}
-        <Separator className="bg-red-900/30 mb-6" />
-        <div className="text-center text-sm text-gray-500">
-          <p>NextBlock Ventures • Daily Twitter Intelligence Report</p>
-          <p className="mt-1">Generado automáticamente para optimización de contenido viral</p>
+          {/* Content */}
+          <section className="py-16">
+            {renderContent()}
+          </section>
         </div>
-      </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 py-12">
+        <div className="max-w-[1600px] mx-auto px-8">
+          <div className="flex items-center justify-between">
+            <div className="text-sm opacity-60">
+              © 2025 NEXTBLOCK VENTURES
+            </div>
+            <div className="text-sm opacity-60">
+              DAILY TWITTER INTELLIGENCE REPORT
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
